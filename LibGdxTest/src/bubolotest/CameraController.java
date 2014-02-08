@@ -15,14 +15,14 @@ public abstract class CameraController
 		this.camera = camera;
 	}
 	
-	protected void moveCamera(float offsetX, float offsetY)
+	protected void moveCamera(float xOffset, float offsetY)
 	{
 		// Ensure the camera stays within the world boundaries. This example world is
 		// 1024 pixels wide, and 1024 pixels tall.
-		if ((offsetX > 0 && camera.position.x < 0) ||
-			(offsetX < 0 && camera.position.x > -1024 + Application.SCREEN_WIDTH))
+		if ((xOffset > 0 && camera.position.x < 0) ||
+			(xOffset < 0 && camera.position.x > -1024 + Application.SCREEN_WIDTH))
 		{
-			camera.translate(offsetX, 0.f, 0.f);
+			camera.translate(xOffset, 0.f, 0.f);
 		}
 		
 		if ((offsetY > 0 && camera.position.y < 0) ||
