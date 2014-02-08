@@ -4,6 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Camera;
 
+/**
+ * 
+ * @author Christopher D. Canfield
+ */
 public class KeyboardCameraController implements CameraController
 {
 	@Override
