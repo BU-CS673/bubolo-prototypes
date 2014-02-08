@@ -36,9 +36,10 @@ public class Application implements ApplicationListener
 	private Camera camera;
 	private List<CameraController> cameraControllers = new ArrayList<CameraController>();
 	
-	private SpriteBatch batch = new SpriteBatch();
+	private SpriteBatch batch;
 	
 	private Texture image;
+	private Texture mapImage;
 
 	@Override
 	public void create()
@@ -46,7 +47,10 @@ public class Application implements ApplicationListener
 		camera = new OrthographicCamera(SCREEN_WIDTH, SCREEN_HEIGHT);
 		cameraControllers.add(new KeyboardCameraController());
 		
+		batch = new SpriteBatch();
+		
 		image = new Texture(new FileHandle(new File("res/test.png")));
+		mapImage = new Texture(new FileHandle(new File("res/maptest.png")));
 	}
 
 	@Override
@@ -70,11 +74,12 @@ public class Application implements ApplicationListener
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
 		batch.begin();
-		if (withinCameraView(camera, image))
+		batch.draw(mapImage, (int)camera.position.x, (int)camera.position.y);
+		if (withinCameraView(camera, image, 400, 50))
 		{
+			System.out.println("Draw");
 			batch.draw(image, 400 + camera.position.x, 50 + camera.position.y);
 		}
-		
 		batch.end();
 		
 		for (CameraController c : cameraControllers)
@@ -98,8 +103,11 @@ public class Application implements ApplicationListener
 		
 	}
 
-	private static boolean withinCameraView(Camera camera, Texture texture)
+	private static boolean withinCameraView(Camera camera, Texture texture, int x, int y)
 	{
-		
+		return (x + texture.getWidth() + camera.position.x > 0 &&
+				x + camera.position.x < camera.viewportWidth &&
+				y + texture.getHeight() + camera.position.y > 0 &&
+				y + camera.position.y < camera.viewportHeight);
 	}
 }

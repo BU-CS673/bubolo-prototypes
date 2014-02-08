@@ -15,11 +15,11 @@ public class KeyboardCameraController implements CameraController
 	{
 		if (Gdx.input.isKeyPressed(Keys.LEFT))
 		{
-			camera.translate(-5.f, 0.f, 0.f);
+			camera.translate(5.f, 0.f, 0.f);
 		}
 		else if (Gdx.input.isKeyPressed(Keys.RIGHT))
 		{
-			camera.translate(5.f, 0.f, 0.f);
+			camera.translate(-5.f, 0.f, 0.f);
 		}
 		
 		if (Gdx.input.isKeyPressed(Keys.UP))
