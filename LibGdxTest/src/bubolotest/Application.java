@@ -30,8 +30,8 @@ public class Application implements ApplicationListener
 		new LwjglApplication(new Application(), cfg);
 	}
 	
-	private static final float SCREEN_WIDTH = 800;
-	private static final float SCREEN_HEIGHT = 600;
+	public static final float SCREEN_WIDTH = 800;
+	public static final float SCREEN_HEIGHT = 600;
 	
 	private Camera camera;
 	private List<CameraController> cameraControllers = new ArrayList<CameraController>();
@@ -45,7 +45,7 @@ public class Application implements ApplicationListener
 	public void create()
 	{
 		camera = new OrthographicCamera(SCREEN_WIDTH, SCREEN_HEIGHT);
-		cameraControllers.add(new KeyboardCameraController());
+		cameraControllers.add(new KeyboardCameraController(camera));
 		
 		batch = new SpriteBatch();
 		
@@ -84,7 +84,7 @@ public class Application implements ApplicationListener
 		
 		for (CameraController c : cameraControllers)
 		{
-			c.update(camera);
+			c.update();
 		}
 		camera.update();
 	}
