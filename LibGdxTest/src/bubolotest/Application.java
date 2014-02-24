@@ -27,6 +27,7 @@ public class Application implements ApplicationListener
 		cfg.title = "Drop";
 		cfg.width = 800;
 		cfg.height = 480;
+		cfg.useGL20 = true;
 		new LwjglApplication(new Application(), cfg);
 	}
 	
