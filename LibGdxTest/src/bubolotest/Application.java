@@ -34,6 +34,9 @@ public class Application implements ApplicationListener
 	public static final float SCREEN_WIDTH = 800;
 	public static final float SCREEN_HEIGHT = 600;
 	
+	private static final int spriteX = 800;
+	private static final int spriteY = 550;
+	
 	private Camera camera;
 	private List<CameraController> cameraControllers = new ArrayList<CameraController>();
 	
@@ -76,10 +79,10 @@ public class Application implements ApplicationListener
 		
 		batch.begin();
 		batch.draw(mapImage, (int)camera.position.x, (int)camera.position.y);
-		if (withinCameraView(camera, image, 400, 50))
+		if (withinCameraView(camera, image, spriteX, spriteY))
 		{
 			System.out.println("Draw");
-			batch.draw(image, 400 + camera.position.x, 50 + camera.position.y);
+			batch.draw(image, spriteX + camera.position.x, spriteY + camera.position.y);
 		}
 		batch.end();
 		
@@ -104,11 +107,11 @@ public class Application implements ApplicationListener
 		
 	}
 
-	private static boolean withinCameraView(Camera camera, Texture texture, int x, int y)
+	private static boolean withinCameraView(Camera camera, Texture texture, int spriteXPos, int spriteYPos)
 	{
-		return (x + texture.getWidth() + camera.position.x > 0 &&
-				x + camera.position.x < camera.viewportWidth &&
-				y + texture.getHeight() + camera.position.y > 0 &&
-				y + camera.position.y < camera.viewportHeight);
+		return (spriteXPos + texture.getWidth() + camera.position.x > 0 &&
+				spriteXPos + camera.position.x < camera.viewportWidth &&
+				spriteYPos + texture.getHeight() + camera.position.y > 0 &&
+				spriteYPos - camera.position.y > camera.viewportHeight);
 	}
 }
